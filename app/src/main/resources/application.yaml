@@ -2,7 +2,6 @@ spring:
   application:
     name: Hello
   datasource:
-    url: jdbc:postgresql://localhost:5432/projections-examples
-    username: user
-    password: password
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: guilhermebueno
     driver-class-name: org.postgresql.Driver
