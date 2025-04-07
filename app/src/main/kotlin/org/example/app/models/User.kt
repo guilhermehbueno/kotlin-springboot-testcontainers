@@ -1,5 +1,9 @@
 package org.example.app.models
+import io.hypersistence.utils.hibernate.type.json.JsonType
 import jakarta.persistence.*
+import org.hibernate.annotations.JdbcTypeCode
+import org.hibernate.annotations.Type
+import org.hibernate.type.SqlTypes
 import java.time.LocalDateTime
 
 @Entity
@@ -22,5 +26,10 @@ data class User(
     val createdAt: LocalDateTime = LocalDateTime.now(),
 
     @Column(name = "updated_at")
-    var updatedAt: LocalDateTime = LocalDateTime.now()
+    var updatedAt: LocalDateTime = LocalDateTime.now(),
+
+    @Type(JsonType::class)
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "location", columnDefinition = "jsonb")
+    var location: Location
 )

@@ -1,5 +1,6 @@
 package org.example.app
 
+import org.example.app.models.Location
 import org.example.app.models.User
 import org.example.app.repositories.UserRepository
 import org.junit.jupiter.api.Assertions
@@ -94,12 +95,14 @@ class AppKtTest {
 
 
         assertEquals(0, repository.count())
-        repository.save(User(username = "Gui", email = "gui@gmail.com", password = ""))
+        val location = Location("Campinas", "Brasil")
+        repository.save(User(username = "Gui", email = "gui@gmail.com", password = "", location = location))
         assertEquals(1, repository.count())
 
         val result = repository.findByEmail("gui@gmail.com")
         assertNotNull(result)
         assertEquals("Gui", result!!.username)
+        assertEquals("Campinas", result!!.location.city)
 
     }
 }
